@@ -14,6 +14,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 //import org.openqa.selenium.JavascriptExecutor;
 
 public class GoogleSearchTest {
+	By findElement = By.cssSelector("div:nth-child(2) > .tF2Cxc .LC20lb");
 	
 	private WebDriver driver;
 	
@@ -25,19 +26,22 @@ public class GoogleSearchTest {
 		driver.get("https://www.google.com");
 	}
 	@Test
-	public void testGooglePage() {
+	public void testGooglePage() throws InterruptedException {
 		
 	    WebElement searchBox = driver.findElement(By.name("q"));
 		
 	    searchBox.clear();
 		
-	    searchBox.sendKeys("ttp://automationpractice.com/index.php");
+	    searchBox.sendKeys("https://www.choucairtesting.com/en/jobs/");
 		
 	    searchBox.submit();
 		
 	    driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		
-	    assertEquals("ttp://automationpractice.com/index.php - Buscar con Google",driver.getTitle());
+	    assertEquals("https://www.choucairtesting.com/en/jobs/ - Buscar con Google",driver.getTitle());
+	 
+	    driver.findElement(findElement).click();
+	    Thread.sleep(2000);
 	
 	}
 	
